@@ -88,3 +88,32 @@ impl log::Log for DltLogger {
 // thread-safe, see https://github.com/COVESA/dlt-daemon/blob/master/doc/dlt_design_specification.md.
 unsafe impl Send for DltLogger {}
 unsafe impl Sync for DltLogger {}
+
+#[cfg(test)]
+mod tests {
+    use std::ptr::null_mut;
+
+    use log::Log;
+
+    use super::*;
+
+    #[test]
+    fn test_flush() {
+        let logger = DltLogger {
+            context: null_mut(),
+        };
+        // does nothing
+        logger.flush();
+    }
+
+    #[test]
+    fn test_enabled() {
+        let logger = DltLogger {
+            context: null_mut(),
+        };
+
+        // always needs be enabled as this is handled by DLT
+        let metadata = Metadata::builder().level(Level::max()).build();
+        assert!(logger.enabled(&metadata));
+    }
+}

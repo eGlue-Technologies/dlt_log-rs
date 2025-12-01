@@ -222,26 +222,12 @@ pub fn init(
 }
 
 #[cfg(test)]
+
 mod tests {
-    use std::ptr::null_mut;
-
-    use log::Log;
-
     use super::*;
 
     #[test]
-    fn test_flush() {
-        let logger = DltLogger { ctx: null_mut() };
-        // does nothing
-        logger.flush();
-    }
-
-    #[test]
-    fn test_enabled() {
-        let logger = DltLogger { ctx: null_mut() };
-
-        // always needs be enabled as this is handled by DLT
-        let metadata = Metadata::builder().level(Level::max()).build();
-        assert!(logger.enabled(&metadata));
+    fn test_lib_init() -> Result<(), InitializeError> {
+        return init("TEST", "Rust tests", "UNIT", "Init function test");
     }
 }
