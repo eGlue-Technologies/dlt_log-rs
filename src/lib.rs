@@ -257,8 +257,13 @@ impl log::Log for DltLogger {
 
         let text = format!(
             "[{}:{}] {}",
-            record.file_static().unwrap().rsplit('/').next().unwrap(),
-            record.line().unwrap(),
+            record
+                .file_static()
+                .unwrap_or("?")
+                .rsplit('/')
+                .next()
+                .unwrap(),
+            record.line().unwrap_or(0),
             record.args()
         );
 
