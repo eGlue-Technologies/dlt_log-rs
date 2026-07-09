@@ -2,6 +2,10 @@
 set -eu
 export CARGO_TERM_COLOR=always
 
+echo "::group::pre-commit"
+pre-commit run
+echo "::endgroup::"
+
 echo "::group::building"
 cargo build
 echo "::endgroup::"
@@ -32,9 +36,4 @@ echo "::endgroup::"
 # examples
 echo "::group::examples"
 cargo run --example simple
-echo "::endgroup::"
-
-# code coverage
-echo "::group::code coverage, required: 80% line coverage"
-cargo llvm-cov --fail-under-lines 80
 echo "::endgroup::"

@@ -1,6 +1,6 @@
 [package]
 name = "dlt_log"
-version = "0.1.6"
+version = "1.0.0"
 description = "Log crate adapter for integrating with the Diagnostic Log and Trace (DLT) system"
 license = "MIT"
 edition = "2021"
@@ -15,3 +15,6 @@ bindgen = "0.72"
 
 [dependencies]
 log = { version = "0.4", features = ["std"] }
+
+[dev-dependencies]
+regex = "1.12"
