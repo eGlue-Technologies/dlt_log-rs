@@ -17,10 +17,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v6
-
-    - name: Set rust version in devcontainer
-      run: ./scripts/set-rust-version.sh nightly
+      uses: actions/checkout@v7
 
     - name: Code coverage
       uses: devcontainers/ci@513af61f4de4f75d37e4438f184ba4358f0fc1ca # v0.3.1900000450
